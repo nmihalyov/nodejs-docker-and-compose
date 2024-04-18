@@ -12,7 +12,7 @@ const corsConfig = {
   credetials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['*'],
 };
 
 async function bootstrap() {
