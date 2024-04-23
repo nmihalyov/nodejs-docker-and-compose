@@ -9,10 +9,10 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { AppModule } from './app.module';
 
 const corsConfig = {
-  credetials: true,
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  origin: ['*'],
+  origin: '*',
 };
 
 async function bootstrap() {
