@@ -27,14 +27,16 @@ export class UsersService {
     }
   }
 
-  async create(createUserDto: CreateUserDto, id: number): Promise<User> {
-    const userByName = await this.findByUsername(createUserDto.username, id);
-    const userByEmail = await this.findByEmail(createUserDto.email, id);
+  async create(createUserDto: CreateUserDto, id?: number): Promise<User> {
+    if (id) {
+      const userByName = await this.findByUsername(createUserDto.username, id);
+      const userByEmail = await this.findByEmail(createUserDto.email, id);
 
-    if (userByName || userByEmail) {
-      throw new ConflictException(
-        'Пользователь с таким email или username уже зарегистрирован',
-      );
+      if (userByName || userByEmail) {
+        throw new ConflictException(
+          'Пользователь с таким email или username уже зарегистрирован',
+        );
+      }
     }
 
     const hash = await bcrypt.hash(createUserDto.password, 10);

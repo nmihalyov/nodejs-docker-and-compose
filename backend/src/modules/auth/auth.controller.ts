@@ -21,7 +21,7 @@ export class AuthController {
 
   @Post('signup')
   async signup(@Req() req, @Body() createUserDto: CreateUserDto) {
-    const { id } = req.user;
+    const id = req?.user?.id;
     const user = await this.usersService.create(createUserDto, id);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...result } = user;
