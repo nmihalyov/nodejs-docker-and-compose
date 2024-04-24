@@ -1,11 +1,12 @@
 version: '3.9'
 services:
   backend:
+    container_name: backend-container
     build:
       context: ./backend
     ports:
       - "4000:3001"
-    restart: on-failure 
+    restart: on-failure
     env_file:
       - ./backend/.env
     networks:
@@ -14,14 +15,17 @@ services:
       - database
 
   frontend:
+    container_name: frontend-container
     build:
       context: ./frontend
     ports:
       - "8081:80"
+    restart: on-failure
     networks:
       - app-network
 
   database:
+    container_name: database-container
     image: postgres:latest
     ports:
       - "5432"
